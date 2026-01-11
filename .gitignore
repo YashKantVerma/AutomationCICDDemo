@@ -7,9 +7,10 @@
 # Maven
 target/
 
-# TestNG & reports
+# TestNG & reports output
 test-output/
-reports/
+reports/*.html
+reports/screenshots/
 
 # Logs
 *.log

@@ -12,7 +12,8 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.qa.framework.utils.ScreenshotUtil;
-import com.qa.reports.ExtentReporterNG;
+import com.qa.framework.reports.ExtentReporterNG;
+
 
 public class Listeners implements ITestListener {
 
