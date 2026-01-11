@@ -1,0 +1,15 @@
+# Eclipse IDE files
+.metadata/
+.settings/
+.classpath
+.project
+
+# Maven
+target/
+
+# TestNG & reports
+test-output/
+reports/
+
+# Logs
+*.log

@@ -1,0 +1,112 @@
+
+<suite name="Ecommerce Suite" parallel="false">
+<listeners>
+<listener class-name="com.qa.listeners.Listeners"/>
+</listeners>
+<test name="Smoke and Regression Tests">
+<classes>
+<class name="com.qa.tests.PlaceOrderTest"/>
+<class name="com.qa.tests.LoginTest"/>
+</classes>
+</test>
+</suite>
+<!-- 
+
+OPTION 2 — Control Specific Methods (Tests) Inside a Class
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Ecommerce Suite">
+  <test name="Regression Tests">
+    <classes>
+      <class name="pompracticepackage.BaseClass">
+        <methods>
+          <include name="placeOrder"/>
+          <exclude name="goToCartPage"/>
+        </methods>
+      </class>
+
+      <class name="pompracticepackage.ErrorsValidation">
+        <methods>
+          <include name="invalidLoginTest"/>
+          <include name="requirePassword"/>
+        </methods>
+      </class>
+    </classes>
+  </test>
+</suite>
+
+OPTION 3 — Include or Exclude Whole Classes
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="BankSuite">
+  <test name="Functional Test">
+    <packages>
+      <package name="pompracticepackage">
+        <classes>
+          <exclude name="pompracticepackage.ErrorsValidation"/>
+        </classes>
+      </package>
+    </packages>
+  </test>
+</suite>
+
+OPTION 4 — Use Groups (For Flexible Control)
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Ecommerce Suite">
+  <test name="Sanity Suite">
+    <groups>
+      <run>
+        <include name="sanity"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="pompracticepackage.BaseClass"/>
+      <class name="pompracticepackage.ErrorsValidation"/>
+    </classes>
+  </test>
+</suite>
+
+OPTION 5 — Add Parallel Execution (If Needed)
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="ParallelSuite" parallel="classes" thread-count="2">
+  <test name="EcommerceParallel">
+    <classes>
+      <class name="pompracticepackage.BaseClass"/>
+      <class name="pompracticepackage.ErrorsValidation"/>
+    </classes>
+  </test>
+</suite>
+ 
+  -->
+<!--  
+
+===============================================
+Ecommerce Suite
+Total tests run: 8, Passes: 8, Failures: 0, Skips: 0
+===============================================
+When a TestNG class extends another test class,
+TestNG inherits all @Test methods from the parent class automatically.
+
+So:
+
+BaseClass defines @Test placeOrder() and @Test ordersHistory()
+
+ErrorsValidation extends BaseClass
+
+TestNG now treats both methods as part of ErrorsValidation too
+
+That’s why you see:
+
+placeOrder() (BaseClass)
+
+placeOrder() (ErrorsValidation)
+
+ordersHistory() (BaseClass)
+
+ordersHistory() (ErrorsValidation)
+
+Total = duplicates = 8 total test executions.
+
+Solution 1 — Make BaseClass a Pure Base (No @Test methods)
+Solution 2 — Keep BaseClass Tests, but Prevent Inheritance
+Solution 3 — Keep BaseClass abstract
+
+ -->
