@@ -27,7 +27,9 @@ public class DashboardPage {
 
     @FindBy(css = ".ng-animating")
     private WebElement spinner;
-
+    
+    private By spinnerBy = By.cssSelector(".ngx-spinner-overlay");
+    
     @FindBy(css = "[routerlink*='cart']")
     private WebElement cartLink;
 
@@ -69,16 +71,19 @@ public class DashboardPage {
         // wait for toast
         wait.until(ExpectedConditions.visibilityOf(toastMessage));
 
-        // wait for spinner to disappear
-        wait.until(ExpectedConditions.invisibilityOf(spinner));
+        // wait for spinner to disappear (robust)
+        wait.until(ExpectedConditions.or(
+            ExpectedConditions.invisibilityOf(spinner),
+            ExpectedConditions.numberOfElementsToBe(spinnerBy, 0)
+        ));
 
-        // go to cart
-        wait.until(ExpectedConditions.elementToBeClickable(cartLink)).click();
+        // EXTRA safety for Angular
+        wait.until(ExpectedConditions.elementToBeClickable(cartLink));
+
+        cartLink.click();
 
         // wait for cart page
         wait.until(ExpectedConditions.visibilityOf(cartSection));
-
-        System.out.println("Navigated to Cart Page");
 
         return new CartPage(driver, wait);
     }

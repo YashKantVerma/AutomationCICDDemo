@@ -1,13 +1,10 @@
 package com.qa.tests;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.qa.framework.base.BaseClass;
 import com.qa.framework.pages.LoginPage;
-
-import org.testng.Assert;
 
 
 public class LoginTest extends BaseClass{
