@@ -16,7 +16,8 @@ import com.qa.reports.ExtentReporterNG;
 
 public class Listeners implements ITestListener {
 
-    private static ExtentReports extent = ExtentReporterNG.reportConfig();
+	private static ExtentReports extent = ExtentReporterNG.getReportObject();
+
     private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
 
     @Override
